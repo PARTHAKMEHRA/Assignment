@@ -1,0 +1,11 @@
+.btn{
+    height:30px;
+    width:200px;
+    background-color: orangered;
+    color:white;
+    text-align: center;
+}
+.btn:hover{
+    background-color: rgb(241, 85, 28);
+    color:black;
+}
