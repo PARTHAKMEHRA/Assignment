@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function App() {
+function DogImage() {
+  const [dogImage, setDogImage] = useState('');
+
+  useEffect(() => {
+    // Fetch a new dog image on component mount
+    fetchDogImage();
+  }, []);
+
+  const fetchDogImage = () => {
+    axios.get('https://dog.ceo/api/breeds/image/random')
+      .then(response => {
+        // Set the new dog image URL
+        setDogImage(response.data.message);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <img src={dogImage} alt="Dog" />
     </div>
   );
 }
 
-export default App;
+export default DogImage;
